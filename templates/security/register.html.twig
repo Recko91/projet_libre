@@ -1,0 +1,25 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="row">
+  <div class="row justify-content-center">
+    {{ form_start(form) }}
+    <div class="form-group">
+      {{ form_row(form.firstName, { 'attr': {
+        'placeholder': 'Your firstname',
+        'class': 'form-control'
+      }}) }}
+    </div>
+  
+    {{ form_row(form.lastName) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.password) }}
+    {{ form_row(form.alias) }}
+    {{ form_row(form.phoneNumber) }}
+    {{ form_row(form.isAdmin) }}
+    <button class="btn btn-primary">S'inscrire</button>
+  {{ form_end(form) }}
+
+  </div>
+</div>
+{% endblock %}
