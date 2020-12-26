@@ -126,4 +126,8 @@ class Reservation
 
         return $this;
     }
+
+    public function setUserId ($userId) {
+
+    }
 }
