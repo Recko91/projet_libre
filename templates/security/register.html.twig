@@ -1,25 +1,52 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-<div class="row">
-  <div class="row justify-content-center">
+  <div class="p-5">
     {{ form_start(form) }}
-    <div class="form-group">
-      {{ form_row(form.firstName, { 'attr': {
-        'placeholder': 'Your firstname',
-        'class': 'form-control'
-      }}) }}
-    </div>
-  
-    {{ form_row(form.lastName) }}
-    {{ form_row(form.email) }}
-    {{ form_row(form.password) }}
-    {{ form_row(form.alias) }}
-    {{ form_row(form.phoneNumber) }}
-    {{ form_row(form.isAdmin) }}
-    <button class="btn btn-primary">S'inscrire</button>
-  {{ form_end(form) }}
+      <div class="form-group">
+        {{ form_row(form.firstName, { 'label': 'FirstName', 'attr': {
+          'placeholder': 'FristName ...',
+          'class': 'form-control'
+        }}) }}
+      </div>
 
+      <div class="form-group">
+        {{ form_row(form.lastName, { 'label': 'LastName', 'attr': {
+          'placeholder': 'LastName ...',
+          'class': 'form-control'
+        }}) }}
+      </div>
+      
+      <div class="form-group">
+        {{ form_row(form.email, { 'label': 'Adresse email', 'attr': {
+          'placeholder': 'Adresse email ...',
+          'class': 'form-control'
+        }}) }}
+      </div>
+
+      <div class="form-group">
+        {{ form_row(form.password, { 'label': ' Mot de passe', 'attr': {
+          'placeholder': 'Votre mot de passe',
+          'class': 'form-control'
+        }}) }}
+      </div>
+
+      <div class="form-group">
+        {{ form_row(form.alias, { 'label': ' Alias', 'attr': {
+          'placeholder': 'Votre alias',
+          'class': 'form-control'
+        }}) }}
+      </div>
+
+       <div class="form-group">
+        {{ form_row(form.phoneNumber, { 'label': ' Numero de telephone', 'attr': {
+          'placeholder': '+33...',
+          'class': 'form-control'
+        }}) }}
+      </div>
+      
+      <button class="btn btn-primary">S'inscrire</button>
+
+    {{ form_end(form) }}
   </div>
-</div>
 {% endblock %}
