@@ -7,6 +7,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class RegistrationType extends AbstractType
 {
@@ -19,6 +20,7 @@ class RegistrationType extends AbstractType
             ->add('password', PasswordType::class)
             ->add('alias')
             ->add('phoneNumber')
+            ->add('isAdmin', CheckboxType::class)
         ;
     }
 
