@@ -2,22 +2,23 @@
 
 {% block body %}
 {{ form_start(form) }}
+<h1>Inscription</h1>
 <div class="p-5">
   <div class="form-group">
     <div class="col-sm-6">
-      {{ form_row(form.firstName, { 'label': 'FirstName', 'attr': {
+{#       {{ form_row(form.firstName, { 'label': 'FirstName', 'attr': {
                 'placeholder': 'FristName ...',
                 'class': 'form-control'
-              }}) }}
+              }}) }} #}
     </div>
   </div>
   
   <div class="form-group">
     <div class="col-sm-6">
-      {{ form_row(form.lastName, { 'label': 'LastName', 'attr': {
+{#       {{ form_row(form.lastName, { 'label': 'LastName', 'attr': {
                 'placeholder': 'LastName ...',
                 'class': 'form-control'
-              }}) }}
+              }}) }} #}
     </div>
   </div>
   
@@ -42,24 +43,28 @@
   
   <div class="form-group">
     <div class="col-sm-6">
-      {{ form_row(form.alias, { 'label': ' Alias', 'attr': {
-              'placeholder': 'Votre alias',
+          {{ form_row(form.password_validation, { 'label': ' Mot de passe', 'attr': {
+              'placeholder': 'Votre mot de passe',
               'class': 'form-control'
             }}) }}
+{#       {{ form_row(form.alias, { 'label': ' Alias', 'attr': {
+              'placeholder': 'Votre alias',
+              'class': 'form-control'
+            }}) }} #}
     </div>
   </div>
   
   <div class="form-group">
     <div class="col-sm-6">
-      {{ form_row(form.phoneNumber, { 'label': ' Numero de telephone', 'attr': {
+{#       {{ form_row(form.phoneNumber, { 'label': ' Numero de telephone', 'attr': {
         'placeholder': '+33...',
         'class': 'form-control'
-      }}) }}
+      }}) }} #}
     </div>
   </div>
   <div class="form-group">
     <div class="col-sm-6">
-      {{ form_row(form.isAdmin )}}
+      {# {{ form_row(form.isAdmin )}} #}
     </div>
   </div>
   <div class="form-group">
