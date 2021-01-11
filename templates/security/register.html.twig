@@ -27,14 +27,15 @@
 	<body>
 
 
-		<div class="wrapper">
+		<div class="wrapper register-color">
 
 
 			<div class="col-sm-12">
 
-        <a href="{{ url('app_index') }}" class="btn btn-secondary mt-3" role="button" aria-disabled="true">Retour à l'accueil</a>
+        <a href="{{ url('app_index') }}" class="btn btn-outline-secondary my-3" role="button" aria-disabled="true"><i class="fas fa-arrow-left"></i></a>
+        <img class="mx-auto d-block" src="{{ asset('images/logo.png') }}" alt="logo Airlock" width="100"/>
         {{ form_start(form) }}
-        <h1 class="text-center">Inscription</h1>
+        <h1 class="text-center m-5 register">Inscription</h1>
         <div class="p-2">
           {# <div class="form-group">
             <div class="col-sm-12">
@@ -57,8 +58,8 @@
           
           <div class="form-group">
             <div class="col-sm-12">
-              {{ form_row(form.email, { 'label': 'Adresse email', 'attr': {
-                        'placeholder': 'Adresse email ...',
+              {{ form_row(form.email, { 'label': 'ADRESSE EMAIL', 'attr': {
+                        'placeholder': 'Entrer votre adresse email...',
                         'class': 'form-control'
                       }}) }}
             </div>
@@ -66,8 +67,8 @@
           
           <div class="form-group">
             <div class="col-sm-12">
-              {{ form_row(form.password, { 'label': ' Mot de passe', 'attr': {
-                      'placeholder': 'Votre mot de passe',
+              {{ form_row(form.password, { 'label': 'MOT DE PASSE', 'attr': {
+                      'placeholder': 'Entrer votre mot de passe...',
                       'class': 'form-control'
                     }}) }}
             </div>
@@ -75,8 +76,8 @@
           
           <div class="form-group">
             <div class="col-sm-12">
-                  {{ form_row(form.password_validation, { 'label': ' Mot de passe', 'attr': {
-                      'placeholder': 'Votre mot de passe',
+                  {{ form_row(form.password_validation, { 'label': 'MOT DE PASSE', 'attr': {
+                      'placeholder': 'Confirmer votre mot de passe...',
                       'class': 'form-control'
                     }}) }}
         {#       {{ form_row(form.alias, { 'label': ' Alias', 'attr': {
@@ -101,7 +102,7 @@
           </div>
           <div class="form-group">
             <div class="col-sm-12 text-center">
-              <button class="btn btn-primary btn-block">S'inscrire</button>
+              <button class="btn btn-primary btn-block btn-custom">S'inscrire</button>
             </div>
           </div>
         </div>
