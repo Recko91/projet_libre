@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\Client;
 use App\Form\RegistrationType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -40,6 +41,28 @@ class SecurityController extends AbstractController
             return $this->redirectToRoute('app_login');
         }
         return $this->render('security/register.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
+    /**
+     * @Route("/client/inscription", name="client_register")
+     */
+    public function clientRegistration (Request $request,  EntityManagerInterface $manager,
+    userPasswordEncoderInterface $encoder) {
+        $client = new Client();
+        $form = $this->createForm(RegistrationType::class, $client);
+
+        $form->handleRequest($request);
+        if($form->isSubmitted() && $form->isValid()) {
+            $encodePassword = $encoder->encodePassword($client, $client->getPassword());
+            $client->setPassword($encodePassword);
+            $manager->persist($client);
+            $manager->flush();
+
+            return $this->redirectToRoute('client_login');
+        }
+        return $this->render('security/client_register.html.twig', [
             'form' => $form->createView()
         ]);
     }
