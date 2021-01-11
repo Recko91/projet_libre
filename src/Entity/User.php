@@ -45,6 +45,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Length(min="8", message="Your password must be greater than 8 characters")
      */
     private $password;
 
@@ -242,6 +243,6 @@ class User implements UserInterface
     public function getSalt() {}
 
     public function getRoles() {
-        return ['ROLE_USER'];
+        return ['ROLE_USER', 'ROLE_ADMIN', 'ROLE'];
     }
 }
