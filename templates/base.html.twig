@@ -21,6 +21,11 @@
 
 		<link rel="stylesheet" href="{{ asset('css/base.css') }}">
 
+		<!-- Leaflet CSS -->
+		 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+		integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+		crossorigin=""/>
+
 
 	</head>
 
@@ -69,18 +74,27 @@
 
 			{% else %}
 				<div class="wrapper d-flex flex-column  align-items-center">
-					<img class="mt-5 mb-5" src="{{ asset('images/logo_blanc.png') }}" alt="logo Airlock" width="200"/>
-					<a href="{{ url('app_register') }}" class="btn btn-primary btn-lg mb-2" role="button" aria-disabled="true">S'incrire</a>
-					<a href="{{ url('app_login') }}" class="text-primary font-weight-bold mb-2" role="button" aria-disabled="true">Se connecter</a>
+					<img class="my-5" src="{{ asset('images/logo_blanc.png') }}" alt="logo Airlock" width="200"/>
+					<a href="{{ url('app_register') }}" class="btn btn-light btn-lg mb-2" role="button" aria-disabled="true">S'incrire</a>
+					<a href="{{ url('app_login') }}" class="text-white font-weight-bold mb-2" role="button" aria-disabled="true">Se connecter</a>
 				</div>
 			{% endif %}
 
 
-			{% block javascripts %}{% endblock %}
+			{% block javascripts %}<scipt></script>{% endblock %}
 			<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 			<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 			<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+		
+			<!-- Leaflet JS -->
+			<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+			integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+			crossorigin=""></script>
+
+			<script>
+				
+			</script>
 		</body>
 
 	</html>

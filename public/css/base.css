@@ -31,6 +31,40 @@ html, body{
         color: #00aeef;
     }
 
+.navbar-collapse {
+    position: absolute;
+    top: 70px;
+    left: 0;
+    padding: 40px 20px;
+    width: 40%;
+    height: 1080px;
+    /* background-color: rgba(239, 239, 239, 0.7); */
+    background-color: #f8f9fa;
+}
+.navbar-collapse.collapsing {
+    height: 1080px;
+    -webkit-transition: left 0.3s ease;
+    -o-transition: left 0.3s ease;
+    -moz-transition: left 0.3s ease;
+    transition: left 0.3s ease;
+    left: -100%;
+}
+.navbar-collapse.show {
+    left: 0;
+    -webkit-transition: left 0.3s ease-in;
+    -o-transition: left 0.3s ease-in;
+    -moz-transition: left 0.3s ease-in;
+    transition: left 0.3s ease-in;
+}
+.nav-link{
+    display: block;
+    padding: .9rem 1rem;
+}
+
+.navbar-light .navbar-nav .nav-link{
+    color: #00aeef;
+}
+
     /* registration page */
 .register{
     font-family: "PoetsenOne-Regular", sans-serif;
@@ -56,3 +90,6 @@ input.form-control:focus{
     background-color: #00aeef;
     border:none;
 }
+
+/* Leaflet */
+/* #mapid { width: 100%; height: 500px; } */
