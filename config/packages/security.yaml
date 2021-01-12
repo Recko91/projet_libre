@@ -14,7 +14,8 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        main:
+    
+        user:
             anonymous: true
             # anonymous: lazy
             provider: users_in_database
@@ -25,6 +26,7 @@ security:
             logout:
                 path: app_logout
                 target: app_login
+
         client:
             anonymous: true
             # anonymous: lazy
@@ -36,6 +38,7 @@ security:
             logout:
                 path: app_logout
                 target: app_login
+
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -51,3 +54,4 @@ security:
 
     encoders:
         App\Entity\User: 'sodium'
+        App\Entity\Client: 'sodium'

@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\User;
 use App\Entity\Client;
 use App\Form\RegistrationType;
+use App\Form\RegistrationClientType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -48,12 +49,14 @@ class SecurityController extends AbstractController
     /**
      * @Route("/client/inscription", name="client_register")
      */
-    public function clientRegistration (Request $request,  EntityManagerInterface $manager,
-    userPasswordEncoderInterface $encoder) {
+    public function clientRegistration(Request $request, EntityManagerInterface $manager, 
+    UserPasswordEncoderInterface $encoder) {
         $client = new Client();
-        $form = $this->createForm(RegistrationType::class, $client);
+
+        $form = $this->createForm(RegistrationClientType::class, $client);
 
         $form->handleRequest($request);
+
         if($form->isSubmitted() && $form->isValid()) {
             $encodePassword = $encoder->encodePassword($client, $client->getPassword());
             $client->setPassword($encodePassword);
@@ -62,9 +65,11 @@ class SecurityController extends AbstractController
 
             return $this->redirectToRoute('client_login');
         }
+
         return $this->render('security/client_register.html.twig', [
             'form' => $form->createView()
         ]);
+
     }
 
     /**
@@ -72,6 +77,13 @@ class SecurityController extends AbstractController
      */
     public function login(){
         return $this->render('security/login.html.twig');
+    }
+
+    /**
+     * @Route("/client/connexion", name="client_login")
+     */
+    public function clientLogin(){
+        return $this->render('security/client_login.html.twig');
     }
 
     /**

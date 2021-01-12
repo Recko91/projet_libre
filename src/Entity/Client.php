@@ -42,6 +42,11 @@ class Client implements UserInterface
     private $password;
 
     /**
+     * @Assert\EqualTo(propertyPath="password", message="You must type the same password")
+     */
+    public $password_validation;
+
+    /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $phoneNumber;
@@ -184,6 +189,6 @@ class Client implements UserInterface
     public function getSalt() {}
 
     public function getRoles() {
-        return ['ROLE_USER'];
+        return ['ROLE_CLIENT'];
     }
 }
