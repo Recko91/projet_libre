@@ -21,6 +21,10 @@
 		<link rel="stylesheet" href="{{ asset('css/base.css') }}">
 
 		{% block stylesheets %}
+			<!-- Leaflet CSS -->
+			<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+			integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+			crossorigin=""/>
 		{% endblock %}
 
 
@@ -83,6 +87,10 @@
 			<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
 
 			{% block javascripts %}
+				<!-- Leaflet JS -->
+				<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+				integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+				crossorigin=""></script>
 			{% endblock %}
 
 			<script>

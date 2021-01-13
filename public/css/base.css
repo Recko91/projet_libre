@@ -40,6 +40,7 @@ html, body{
     height: 1080px;
     /* background-color: rgba(239, 239, 239, 0.7); */
     background-color: #f8f9fa;
+    z-index: 3;
 }
 .navbar-collapse.collapsing {
     height: 1080px;
@@ -89,4 +90,11 @@ input.form-control:focus{
 .btn-custom{
     background-color: #00aeef;
     border:none;
+}
+
+    /* map */
+#mapid{
+    width: 100%;
+    height: 500px;
+    z-index:2
 }

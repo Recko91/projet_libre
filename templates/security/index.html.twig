@@ -1,17 +1,21 @@
 {% extends "base.html.twig" %}
 
-        {% block stylesheets %}
-        {% endblock %}
+    {% block stylesheets %}
+        {{parent()}}
+    {% endblock %}
 
-        {% block body %}
+    {% block body %}
 
         {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
             <h1 class="text-center">Bienvenue</h1>
-            
+            <div id="mapid"></div>
         {% endif %}
 
-        {% endblock %}
+    {% endblock %}
 
-        {% block javascripts %}
-        {% endblock %}
+    {% block javascripts %}
+        {{parent()}}
+        
+        <script src="{{ asset('js/map.js') }}"></script>
 
+    {% endblock %}
