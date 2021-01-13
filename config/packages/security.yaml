@@ -2,20 +2,24 @@ security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
         users_in_memory: { memory: null }
-        users_in_database:
-            entity:
-                class: App\Entity\User
-                property: email
+        
         clients_in_database:
             entity:
                 class: App\Entity\Client
                 property: email
+        
+        users_in_database:
+            entity:
+                class: App\Entity\User
+                property: email
+
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-    
+
         user:
+            pattern: ^/      
             anonymous: true
             # anonymous: lazy
             provider: users_in_database
@@ -28,6 +32,7 @@ security:
                 target: app_login
 
         client:
+            pattern: ^/client
             anonymous: true
             # anonymous: lazy
             provider: clients_in_database
@@ -37,7 +42,7 @@ security:
                 check_path: client_login
             logout:
                 path: app_logout
-                target: app_login
+                target: app_login                
 
 
             # activate different ways to authenticate
