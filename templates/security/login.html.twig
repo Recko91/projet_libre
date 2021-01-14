@@ -32,22 +32,22 @@
 
 			<div class="col-sm-12">
 
-				<a href="{{ url('app_index') }}" class="btn btn-secondary mt-3" role="button" aria-disabled="true">Retour à l'accueil</a>
+				 <a href="{{ url('app_index') }}" class="btn btn-outline-secondary position-absolute" role="button" aria-disabled="true"><i class="fas fa-arrow-left"></i></a>
 
-				<h1 class="text-center">Connexion</h1>
+				<img class="ml-5 mt-4 mb-3" src="{{ asset('images/logo_blanc.png') }}" alt="logo Airlock" width="200"/>
 
 				<form action="{{ path('app_login') }}" method="post">
 					<div class="form-group">
-						<label>Adresse Email</label>
+						<label id="white">Adresse Email</label>
 						<input type="text" name="_username" placeholder="Email..." class="form-control" required>
 					</div>
 					<div class="form-group">
-						<label>Mot de Passe</label>
+						<label id="white">Mot de Passe</label>
 						<input type="password" name="_password" placeholder="Mot de Passe..." class="form-control" required>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-12 text-center">
-							<button type="submit" class="btn btn-primary">Se Connecter</button>
+							<button type="submit" class="btn btn-login">Connexion</button>
 						</div>
 					</div>
 				</form>
