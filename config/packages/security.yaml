@@ -18,6 +18,19 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
 
+        client:
+            pattern: ^/client
+            anonymous: true
+            # anonymous: lazy
+            provider: clients_in_database
+
+            form_login:
+                login_path: client_login
+                check_path: client_login
+            logout:
+                path: app_logout
+                target: app_login    
+
         user:
             pattern: ^/      
             anonymous: true
@@ -30,20 +43,6 @@ security:
             logout:
                 path: app_logout
                 target: app_login
-
-        client:
-            pattern: ^/client
-            anonymous: true
-            # anonymous: lazy
-            provider: clients_in_database
-
-            form_login:
-                login_path: client_login
-                check_path: client_login
-            logout:
-                path: app_logout
-                target: app_login                
-
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
@@ -58,5 +57,6 @@ security:
         # - { path: ^/profile, roles: ROLE_USER }
 
     encoders:
-        App\Entity\User: 'sodium'
-        App\Entity\Client: 'sodium'
+        App\Entity\Client: 'auto'
+        App\Entity\User: 'auto'
+        

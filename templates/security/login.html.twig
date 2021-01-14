@@ -4,17 +4,20 @@
 <h1>Connexion</h1>
 
   <form action="{{ path('app_login') }}" method="post">
+
     <div class="form-group">
       <label>Adresse Email</label>
       <input type="text" name="_username" placeholder="Email..." class="form-control" required>
     </div>
+
     <div class="form-group">
       <label>Mot de Passe</label>
       <input type="password" name="_password" placeholder="Mot de Passe..." class="form-control" required>
     </div>
+    
       <div class="form-group">
     <div class="col-sm-6">
-      <button type="submit" class="btn btn-primary">Se Connecter</button>
+      <button type="submit" class="btn btn-primary">Valider</button>
     </div>
   </div>
   </form>
