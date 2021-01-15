@@ -81,31 +81,31 @@
                       'placeholder': 'Confirmer votre mot de passe...',
                       'class': 'form-control'
                     }}) }}
-        {#       {{ form_row(form.alias, { 'label': ' Alias', 'attr': {
+          {#       {{ form_row(form.alias, { 'label': ' Alias', 'attr': {
                       'placeholder': 'Votre alias',
                       'class': 'form-control'
                     }}) }} #}
             </div>
           </div>
           
-          <div class="form-group">
+          {# <div class="form-group">
             <div class="col-sm-12">
-        {#       {{ form_row(form.phoneNumber, { 'label': ' Numero de telephone', 'attr': {
+               {{ form_row(form.phoneNumber, { 'label': ' Numero de telephone', 'attr': {
                 'placeholder': '+33...',
                 'class': 'form-control'
-              }}) }} #}
+              }}) }}
             </div>
           </div>
           <div class="form-group">
             <div class="col-sm-12">
-              {# {{ form_row(form.isAdmin )}} #}
+              {{ form_row(form.isAdmin )}}
             </div>
-          </div>
-          <div class="form-group">
-            <div class="col-sm-12 text-center">
+          </div> #}
+
+          <div class="col-sm-12">
               <button class="btn btn-primary btn-block btn-custom">S'inscrire</button>
-            </div>
-          </div>
+          </div>    
+
         </div>
 
         {{ form_end(form) }}
