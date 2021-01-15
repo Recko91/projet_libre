@@ -2,80 +2,108 @@
 
 namespace App\Security;
 
+use App\Entity\User;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\Security\Core\Exception\AuthenticationException;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
-use Symfony\Component\Security\Http\Authenticator\AuthenticatorInterface;
-use Symfony\Component\Security\Http\Authenticator\Passport\PassportInterface;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\Security\Core\Exception\CustomUserMessageAuthenticationException;
+use Symfony\Component\Security\Core\Exception\InvalidCsrfTokenException;
+use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\UserProviderInterface;
+use Symfony\Component\Security\Csrf\CsrfToken;
+use Symfony\Component\Security\Csrf\CsrfTokenManagerInterface;
+use Symfony\Component\Security\Guard\Authenticator\AbstractFormLoginAuthenticator;
+use Symfony\Component\Security\Guard\PasswordAuthenticatedInterface;
+use Symfony\Component\Security\Http\Util\TargetPathTrait;
 
-class LoginFormAuthenticator implements AuthenticatorInterface {
-   /**
-     * Does the authenticator support the given Request?
-     *
-     * If this returns false, the authenticator will be skipped.
-     *
-     * Returning null means authenticate() can be called lazily when accessing the token storage.
-     */
-    public function supports(Request $request): ?bool {
-      return $request->attributes->get('_route') === 'app_help';
+class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements PasswordAuthenticatedInterface
+{
+  use TargetPathTrait;
+
+  public const LOGIN_ROUTE = 'app_login';
+
+  private $entityManager;
+  private $urlGenerator;
+  private $csrfTokenManager;
+  private $passwordEncoder;
+
+  public function __construct(EntityManagerInterface $entityManager, UrlGeneratorInterface $urlGenerator, CsrfTokenManagerInterface $csrfTokenManager, UserPasswordEncoderInterface $passwordEncoder)
+  {
+    $this->entityManager = $entityManager;
+    $this->urlGenerator = $urlGenerator;
+    $this->csrfTokenManager = $csrfTokenManager;
+    $this->passwordEncoder = $passwordEncoder;
+  }
+
+  public function supports(Request $request)
+  {
+    return self::LOGIN_ROUTE === $request->attributes->get('_route')
+      && $request->isMethod('POST');
+  }
+
+  public function getCredentials(Request $request)
+  {
+      $credentials = [
+        'email' => $request->request->get('email'),
+        'password' => $request->request->get('password'),
+        'password_validation' => $request->request->get('password_validation'),
+        'csrf_token' => $request->request->get('_csrf_token'),
+      ];
+      $request->getSession()->set(
+        Security::LAST_USERNAME,
+        $credentials['email']
+      );
+
+      return $credentials;
+  }
+
+  public function getUser($credentials, UserProviderInterface $userProvider)
+  {
+    $token = new CsrfToken('authenticate', $credentials['csrf_token']);
+    if (!$this->csrfTokenManager->isTokenValid($token)) {
+      throw new InvalidCsrfTokenException();
     }
 
-    /**
-     * Create a passport for the current request.
-     *
-     * The passport contains the user, credentials and any additional information
-     * that has to be checked by the Symfony Security system. For example, a login
-     * form authenticator will probably return a passport containing the user, the
-     * presented password and the CSRF token value.
-     *
-     * You may throw any AuthenticationException in this method in case of error (e.g.
-     * a UsernameNotFoundException when the user cannot be found).
-     *
-     * @throws AuthenticationException
-     */
-    public function authenticate(Request $request): PassportInterface {
-      dd('authenticate');
+    $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $credentials['email']]);
+
+    if (!$user) {
+      // fail authentication with a custom error
+      throw new CustomUserMessageAuthenticationException('Email could not be found.');
     }
 
-    /**
-     * Create an authenticated token for the given user.
-     *
-     * If you don't care about which token class is used or don't really
-     * understand what a "token" is, you can skip this method by extending
-     * the AbstractAuthenticator class from your authenticator.
-     *
-     * @see AbstractAuthenticator
-     *
-     * @param PassportInterface $passport The passport returned from authenticate()
-     */
-    public function createAuthenticatedToken(PassportInterface $passport, string $firewallName): TokenInterface {
-      
+    return $user;
+  }
+
+  public function checkCredentials($credentials, UserInterface $user)
+  {
+      return $this->passwordEncoder->isPasswordValid($user, $credentials['password']);
+  }
+
+  /**
+   * Used to upgrade (rehash) the user's password automatically over time.
+   */
+  public function getPassword($credentials): ?string
+  {
+      return $credentials['password'];
+  }
+
+  public function onAuthenticationSuccess(Request $request, TokenInterface $token, $providerKey)
+  {
+    if ($targetPath = $this->getTargetPath($request->getSession(), $providerKey)) {
+      return new RedirectResponse($targetPath);
     }
 
-    /**
-     * Called when authentication executed and was successful!
-     *
-     * This should return the Response sent back to the user, like a
-     * RedirectResponse to the last page they visited.
-     *
-     * If you return null, the current request will continue, and the user
-     * will be authenticated. This makes sense, for example, with an API.
-     */
-    public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response {
-      
-    }
+    // For example : return new RedirectResponse($this->urlGenerator->generate('some_route'));
+    return new RedirectResponse($this->urlGenerator->generate('user_index'));
+    throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
+  }
 
-    /**
-     * Called when authentication executed, but failed (e.g. wrong username password).
-     *
-     * This should return the Response sent back to the user, like a
-     * RedirectResponse to the login page or a 403 response.
-     *
-     * If you return null, the request will continue, but the user will
-     * not be authenticated. This is probably not what you want to do.
-     */
-    public function onAuthenticationFailure(Request $request, AuthenticationException $exception): ?Response {
-      
-    }
+  protected function getLoginUrl()
+  {
+      return $this->urlGenerator->generate(self::LOGIN_ROUTE);
+  }
 }

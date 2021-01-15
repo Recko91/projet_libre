@@ -28,5 +28,4 @@ class RegistrationClientType extends AbstractType {
     ]);
   }
 
-
 }
