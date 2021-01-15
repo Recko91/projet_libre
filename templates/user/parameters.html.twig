@@ -6,38 +6,37 @@
   <form action="{{ path('user_parameters') }}" method="post">
     <div class="form-group">
       <label>Prénom</label>
-      <input type="text" name="firstname" placeholder="Votre Prénom" class="form-control" required>
+      <input type="text" name="firstname" placeholder="Votre Prénom" class="form-control">
     </div>
 
     <div class="form-group">
       <label>Nom</label>
-      <input type="text" name="lastname" placeholder="Votre Nom" class="form-control" required>
+      <input type="text" name="lastname" placeholder="Votre Nom" class="form-control">
     </div>
 
     <div class="form-group">
       <label>Adresse Email</label>
-      <input type="text" name="_username" placeholder="Email..." class="form-control" required>
+      <input type="text" name="_username" placeholder="Email..." class="form-control">
     </div>
 
     <div class="form-group">
       <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
         Modifier le Mot de Passe
       </button>
-      <div class="collapse" id="collapseExample">
-        <div class="card card-body">
-          <label>Mot de Passe</label>
-          <input type="password" name="_password" placeholder="Mot de Passe..." class="form-control" required>
-        </div>
+      <div class="collapse.show" id="collapseExample">
+
+        <input type="password" name="_password" placeholder="Mot de Passe..." class="form-control" >
+       
     </div>
 
     <div class="form-group">
       <label>Alias</label>
-      <input type="text" name="alias" placeholder="Votre Alias..." class="form-control" required>
+      <input type="text" name="alias" placeholder="Votre Alias..." class="form-control">
     </div>
 
     <div class="form-group">
       <label>Numéro de Téléphone</label>
-      <input type="text" name="phone_number" placeholder="Votre Numéro de Téléphone..." class="form-control" required>
+      <input type="text" name="phone_number" placeholder="Votre Numéro de Téléphone..." class="form-control">
     </div>
     
       <div class="form-group">

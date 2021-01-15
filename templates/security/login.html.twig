@@ -1,25 +1,67 @@
-{% extends "base.html.twig" %}
+<!doctype html>
+<html lang="fr">
 
-{% block body %}
-<h1>Connexion</h1>
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <form action="{{ path('app_login') }}" method="post">
+		<title>
+			{% block title %}{% endblock %}
+		</title>
 
-    <div class="form-group">
-      <label>Adresse Email</label>
-      <input type="text" name="_username" placeholder="Email..." class="form-control" required>
-    </div>
+		{% block stylesheets %}{% endblock %}
+		<!-- Bootstrap CSS -->
+		<link
+		rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
 
-    <div class="form-group">
-      <label>Mot de Passe</label>
-      <input type="password" name="_password" placeholder="Mot de Passe..." class="form-control" required>
-    </div>
-    
-      <div class="form-group">
-    <div class="col-sm-6">
-      <button type="submit" class="btn btn-primary">Valider</button>
-    </div>
-  </div>
-  </form>
+		<!-- CSS -->
 
-{% endblock %}
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+		<link rel="stylesheet" href="{{ asset('css/base.css') }}">
+
+
+	</head>
+
+	<body>
+
+
+		<div class="wrapper">
+
+
+			<div class="col-sm-12">
+
+				 <a href="{{ url('app_index') }}" class="btn btn-outline-secondary position-absolute mt-3" role="button" aria-disabled="true"><i class="fas fa-arrow-left"></i></a>
+
+				<img class="mx-auto d-block pt-5" src="{{ asset('images/logo_blanc.png') }}" alt="logo Airlock" width="180"/>
+
+				<form action="{{ path('app_login') }}" method="post">
+					<div class="form-group">
+						<label id="white">ADRESSE EMAIL</label>
+						<input type="text" name="_username" placeholder="Email..." class="form-control" required>
+					</div>
+					<div class="form-group">
+						<label id="white">MOT DE PASSE</label>
+						<input type="password" name="_password" placeholder="Mot de Passe..." class="form-control" required>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-12 text-center">
+							<button type="submit" class="btn btn-login">Connexion</button>
+						</div>
+					</div>
+				</form>
+
+			</div>
+
+		</div>
+
+
+		{% block javascripts %}{% endblock %}
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+	</body>
+
+</html>
