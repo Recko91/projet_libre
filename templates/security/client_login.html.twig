@@ -31,6 +31,18 @@
 
 				<img class="mx-auto d-block pt-5" src="{{ asset('images/logo_blanc.png') }}" alt="logo Airlock" width="180"/>
 
+				<div class="col-sm-12">
+					<div class="text-center pt-4 login_client"><h1>Inscription Client</h1></div>
+					<div class="p-2">
+					<div class="form-group">
+						<div class="col-sm-12">
+					{#       {{ form_row(form.firstName, { 'label': 'FirstName', 'attr': {
+									'placeholder': 'FristName ...',
+									'class': 'form-control'
+								}}) }} #}
+					</div>
+				</div>
+
 				<form action="{{ path('app_login') }}" method="post">
 					<div class="form-group">
 						<label id="white">ADRESSE EMAIL</label>
