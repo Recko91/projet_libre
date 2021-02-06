@@ -25,6 +25,11 @@
 			<link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
 			integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
 			crossorigin=""/>
+
+			<!-- Geocoder-->
+			<link rel="stylesheet" href="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.css" />
+			<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+			
 		{% endblock %}
 
 
@@ -33,7 +38,7 @@
 	<body>
 
 
-		{# {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %} #}
+		{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
 
 			<div class="wrapper">
 
@@ -41,7 +46,7 @@
 					<button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 						<span class="navbar-toggler-icon"></span>
 					</button>
-					<a class="navbar-brand" href="#"><img src="{{ asset('images/logo.png') }}" alt="logo Airlock" width="70"/></a>
+					<a class="navbar-brand" href="{{ path('app_index') }}"><img src="{{ asset('images/logo.png') }}" alt="logo Airlock" width="70"/></a>
 					<a class="navbar-brand" href="#">
 						<i class="fas fa-search"></i>
 					</a>
@@ -49,13 +54,17 @@
 					<div class="collapse navbar-collapse" id="navbarSupportedContent">
 						<ul class="navbar-nav mr-auto">
 							<li class="nav-item">
-								<a href="{{ path('user_parameters') }}" class="nav-link">Profil</a>
+								<a href="{{ path('app_index') }}" class="nav-link">Accueil</a>
+							</li>
+
+							<li class="nav-item">
+								<a href="#" class="nav-link">Profil</a>
 							</li>
 							<li class="nav-item">
-								<a href="#" class="nav-link">Réservation</a>
+								<a href="{{ url('reservation', {'id': 1}) }}" class="nav-link">Réservation</a>
 							</li>
 							<li class="nav-item">
-								<a href="#" class="nav-link">Paramètres</a>
+								<a href="{{ path('user_parameters')}}" class="nav-link">Paramètres</a>
 							</li>
 							<li class="nav-item">
 								<a href="{{ path('app_logout') }}" class="nav-link">Se déconnecter</a>
@@ -73,13 +82,20 @@
 			</div>
 
 
-		{# {% else %} #}
-			<div class="wrapper d-flex flex-column  align-items-center">
-				<img class="my-5" src="{{ asset('images/logo_blanc.png') }}" alt="logo Airlock" width="200"/>
-				<a href="{{ url('app_register') }}" class="btn btn-light btn-lg mb-2" role="button" aria-disabled="true">S'incrire</a>
-				<a href="{{ url('app_login') }}" class="text-white font-weight-bold mb-2" role="button" aria-disabled="true">Se connecter</a>
-			</div>
-		{# {% endif %} #}
+			{% else %}
+				<div class="wrapper d-flex flex-column  align-items-center">
+					<img class="my-5 pt-5" src="{{ asset('images/logo_blanc.png') }}" alt="logo Airlock" width="200"/>
+					<a href="{{ url('app_register') }}" class="btn btn-light btn-lg mb-2" role="button" aria-disabled="true">S'incrire</a>
+					<a href="{{ url('app_login') }}" class="text-white font-weight-bold mb-2" role="button" aria-disabled="true">Se connecter</a>
+				</div>
+
+				<div class="client_line_co">
+					<a href="{{ url('client_login') }}" class="mb-2 client_line_color" role="button" aria-disabled="true">connexion</a>
+				</div>
+				<div class="client_line">
+					<a href="{{ url('client_register') }}" class="mb-2 client_line_color" role="button" aria-disabled="true">inscription entreprise</a>
+				</div>
+			{% endif %}
 
 			<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 			<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -91,6 +107,11 @@
 				<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
 				integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
 				crossorigin=""></script>
+				
+				<!-- Geocoder-->
+				<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
+				<script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+
 			{% endblock %}
 
 			<script>
