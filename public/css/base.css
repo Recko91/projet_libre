@@ -18,8 +18,8 @@ html, body{
 /* template */
 .wrapper { 
     margin: 0 auto;
-    max-width: 657px;
-    height:1080px;
+    max-width: 100vh;
+    height:100vh;
     width: 100%;
     background-color:#00aeef;
 }
@@ -161,11 +161,12 @@ input.form-control:focus{
 font-family: "PoetsenOne-Regular", sans-serif;
 /* Leaflet */
 /* #mapid { width: 100%; height: 500px; } */
+}
 
 html {
     position: relative;
     min-height: 100%;
-    overflow-y: hidden;
+    /* overflow-y: hidden; */
 }
  
 .client_line {
