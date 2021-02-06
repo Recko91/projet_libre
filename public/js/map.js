@@ -4,6 +4,8 @@
     // };
     
     // initialisation carte 
+window.onload = function(){
+
     var mymap = L.map('mapid').setView([48.852969, 2.349903] , 13);
 
     L.tileLayer('https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png', {
@@ -28,4 +30,23 @@
     var marker = L.marker([48.852969, 2.349903],
     {icon: icone})
     .addTo(mymap);
-    marker.bindPopup("<p>Paris</p>").openPopup();
+    marker.bindPopup(
+        "<p>Adresse Paris<br>Note : 4/5</p><a class='btn text-white btn-primary' href='https://127.0.0.1:8000/reservation/1'>Réservation</a>")
+        .openPopup();
+
+
+    // gestion d'itinéraire
+    L.Routing.control({
+        geocoder: L.Control.Geocoder.nominatim(),
+        lineOptions: {
+            styles: [{
+                color: '#00aeef'
+            }]
+        }
+        // router: new L.Routing.osrmvl({
+        //     language: 'fr'
+        // })
+    }).addTo(mymap)
+
+
+}
