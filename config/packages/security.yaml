@@ -27,9 +27,10 @@ security:
             form_login:
                 login_path: client_login
                 check_path: client_login
+                default_target_path: client_address
             logout:
                 path: app_logout
-                target: app_login    
+                target: client_login   
 
         user:
             pattern: ^/      
@@ -38,22 +39,16 @@ security:
             provider: users_in_database
 
             form_login:
-                login_path: app_login
-                check_path: app_login
+                login_path: user_login
+                check_path: user_login
             logout:
                 path: app_logout
-                target: app_login
-
-            # activate different ways to authenticate
-            # https://symfony.com/doc/current/security.html#firewalls-authentication
-
-            # https://symfony.com/doc/current/security/impersonating_user.html
-            # switch_user: true
+                target: user_login
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/client, roles: ROLE_ADMIN }
+        # - { path: ^/client, roles: ROLE_CLIENT }
         # - { path: ^/, roles: ROLE_USER }
 
     encoders:
