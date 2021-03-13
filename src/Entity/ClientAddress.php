@@ -91,7 +91,7 @@ class ClientAddress
         return $this->client;
     }
 
-    public function setClient(?Client $client): self
+    public function setClient($client): self
     {
         $this->client = $client;
 
