@@ -20,10 +20,9 @@ class ClientAddress
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="clientAddresses")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="string", length=255)
      */
-    private $client;
+    private $clientId;
 
     /**
      * @ORM\Column(type="string", length=255)
@@ -86,14 +85,14 @@ class ClientAddress
         return $this->id;
     }
 
-    public function getClient(): ?Client
+    public function getClientId(): ?Client
     {
-        return $this->client;
+        return $this->clientId;
     }
 
-    public function setClient($client): self
+    public function setClientId($clientId): self
     {
-        $this->client = $client;
+        $this->clientId = $clientId;
 
         return $this;
     }

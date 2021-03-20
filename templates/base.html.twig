@@ -37,12 +37,16 @@
 
 	<body>
 
-
 		{% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
 
 			<div class="wrapper">
 
-				{{ include('layouts/user_nav.html.twig') }}
+				{% if is_granted('ROLE_USER') %}
+					{{ include('layouts/user_nav.html.twig') }}
+				{% endif %}
+				{% if is_granted('ROLE_CLIENT') %}
+					{{ include('layouts/client_nav.html.twig') }}
+				{% endif %}
 
 				{% block body %}
 					<div class="main"></div>
