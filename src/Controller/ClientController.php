@@ -50,18 +50,8 @@ class ClientController extends AbstractController
     {
         $address = new ClientAddress();
 
-        $userId = $this->security->getUser()->getId();
-        $businessName = $this->security->getUser()->getBusinessName();
-
-        
-
         $form = $this->createFormBuilder($address)
 
-                ->add('availability', HiddenType::class, [
-                    'attr' => [
-                        'value' => "5",
-                    ]
-                ])
                 ->add('streetNumber', TextType::class, [
                     'attr' => [
                         'placeholder' => "Numéro de rue",
@@ -113,14 +103,17 @@ class ClientController extends AbstractController
                 $form->handleRequest($request);
                 
                 if($form->isSubmitted() && $form->isValid()) {
-                dump($address);
 
-                $address->setClientId($userId);
+                    $clientId = $this->security->getUser()->getId();
+                    $address->setClientId($clientId);
 
-                $manager->persist($address);
-                $manager->flush();
+                    $capacity = $address->getCapacity();
+                    $address->setAvailability($capacity);
+                    
+                    $manager->persist($address);
+                    $manager->flush();
 
-                return $this->redirectToRoute('client_address');
+                    return $this->redirectToRoute('client_address');
                 }
 
 
