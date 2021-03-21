@@ -29,8 +29,7 @@ security:
                 check_path: client_login
                 default_target_path: client_address
             logout:
-                path: app_logout
-                target: client_login   
+                path: app_logout 
 
         user:
             pattern: ^/      
@@ -43,7 +42,6 @@ security:
                 check_path: user_login
             logout:
                 path: app_logout
-                target: user_login
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
