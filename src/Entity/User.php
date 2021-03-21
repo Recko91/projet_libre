@@ -63,7 +63,7 @@ class User implements UserInterface
     private $phoneNumber;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $isAdmin;
 

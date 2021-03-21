@@ -52,15 +52,9 @@ class ClientController extends AbstractController
 
         $form = $this->createFormBuilder($address)
 
-                ->add('streetNumber', TextType::class, [
-                    'attr' => [
-                        'placeholder' => "Numéro de rue",
-                        'class' => 'form-control'
-                    ]
-                ])
                 ->add('streetName', TextType::class, [
                     'attr' => [
-                        'placeholder' => "Nom de rue",
+                        'placeholder' => "Adresse",
                         'class' => 'form-control'
                     ]
                 ])

@@ -23,17 +23,11 @@ class Reservation
      */
     private $user;
 
-    /**
-     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="reservations")
-     * @ORM\JoinColumn(nullable=false)
-     */
-    private $client;
 
     /**
-     * @ORM\ManyToOne(targetEntity=ClientAddress::class, inversedBy="reservations")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="integer")
      */
-    private $address;
+    private $addressId;
 
     /**
      * @ORM\Column(type="integer")

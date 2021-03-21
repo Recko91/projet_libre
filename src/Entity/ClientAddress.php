@@ -20,14 +20,9 @@ class ClientAddress
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer", length=255)
      */
     private $clientId;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
-    private $streetNumber;
 
     /**
      * @ORM\Column(type="string", length=255)
