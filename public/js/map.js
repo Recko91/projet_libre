@@ -42,10 +42,11 @@ window.onload = function(){
             styles: [{
                 color: '#00aeef'
             }]
-        }
-        // router: new L.Routing.osrmvl({
-        //     language: 'fr'
-        // })
+        },
+        router: new L.Routing.osrmv1({
+             language: 'fr',
+             profile: 'bike'
+        })
     }).addTo(mymap)
 
 
