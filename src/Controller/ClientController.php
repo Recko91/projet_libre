@@ -12,7 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
+use Symfony\Component\Mime\Address;
 
 class ClientController extends AbstractController
 {
@@ -40,7 +40,13 @@ class ClientController extends AbstractController
      */
     public function address()
     {
-        return $this->render('client/address/address.html.twig');
+        $clientId = $this->security->getUser()->getId();
+        $addresses= $this->getDoctrine()->getRepository(ClientAddress::class)->findById($clientId);
+
+    return $this->render('client/address/address.html.twig', [
+        "addresses" => $addresses,
+    ]);
+        // return $this->render('client/address/address.html.twig');
     }
 
     /**
