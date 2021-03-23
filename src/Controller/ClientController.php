@@ -70,6 +70,12 @@ class ClientController extends AbstractController
                         'class' => 'form-control'
                     ]
                 ])
+                ->add('city', TextType::class, [
+                    'attr' => [
+                        'placeholder' => "Ville",
+                        'class' => 'form-control'
+                    ]
+                ])
                 ->add('country', TextType::class, [
                     'attr' => [
                         'placeholder' => "Pays",
