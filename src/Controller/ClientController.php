@@ -41,12 +41,12 @@ class ClientController extends AbstractController
     public function address()
     {
         $clientId = $this->security->getUser()->getId();
-        $addresses= $this->getDoctrine()->getRepository(ClientAddress::class)->findById($clientId);
+        $addresses= $this->getDoctrine()->getRepository(ClientAddress::class)->findByClientId($clientId);
 
-    return $this->render('client/address/address.html.twig', [
-        "addresses" => $addresses,
-    ]);
-        // return $this->render('client/address/address.html.twig');
+        return $this->render('client/address/address.html.twig', [
+            "addresses" => $addresses,
+        ]);
+
     }
 
     /**
