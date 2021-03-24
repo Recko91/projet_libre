@@ -2,12 +2,16 @@
 
     {% block stylesheets %}
         {{parent()}}
+        <style>
+            body {
+                overflow: hidden;
+            }
+        </style>
     {% endblock %}
 
     {% block body %}
 
-        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
-            <h1 class="text-center">Bienvenue</h1>
+        {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}   
             <div id="mapid"></div>
         {% endif %}
 
