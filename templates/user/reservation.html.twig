@@ -5,7 +5,31 @@
 
   <h1 class="text-center text-white font my-4">Faire une reservation</h1>
 
-    <form method="post">
+
+{{ form_start(formReservation )}}
+
+	<div class="form-group">
+		<label>Pour combien de véhicule ?</label>
+    	{{ form_widget(formReservation.vehicleQuantity) }}
+	</div>
+
+	<div class="form-group">
+		<label>À partir de </label>
+    	{{ form_widget(formReservation.startDate) }}
+	</div>
+
+	<div class="form-group">
+		<label>Jusqu' à </label>
+    	{{ form_widget(formReservation.endDate) }}
+	</div>
+
+	<div class="form-group">
+    	{{ form_widget(formReservation.save) }}
+	</div>
+	
+
+{{ form_end(formReservation) }}
+{#     <form method="post" action="{{ path('reservation', {'id': 1}) }}">
 
       <div class="form-group">
         <label>Pour combien de véhicule ?</label>
@@ -14,7 +38,7 @@
 
       <div class="form-group">
         <label>À partir de </label>
-        <input type="datetime-local" name="start_date" class="form-control" required>
+        <input type="datetime" name="start_date" class="form-control" required>
       </div>
 
       <div class="form-group">
@@ -24,7 +48,7 @@
 
         <button type="submit" class="btn btn-primary btn-block btn-reservation">Je réserve</button>
     </div>
-    </form>
+    </form> #}
 
     <!-- Commentaires-->
 

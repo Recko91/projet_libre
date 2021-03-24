@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="col-sm-12">
+
+  <h1 class="text-center text-white font my-4">Mes Réservations</h1>
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <script> 
+
+      function on() { 
+        document.getElementById("overlay").style.display = "block"; 
+      } 
+
+      function off() { 
+        document.getElementById("overlay").style.display = "none"; 
+      } 
+
+    </script> 
+
+{% endblock %}

@@ -18,10 +18,9 @@ class Reservation
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="reservations")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="integer")
      */
-    private $user;
+    private $userId;
 
 
     /**
@@ -49,38 +48,27 @@ class Reservation
         return $this->id;
     }
 
-    public function getUser(): ?User
+    public function getUserId(): ?User
     {
-        return $this->user;
+        return $this->userId;
     }
 
-    public function setUser(?User $user): self
+    public function setUserId($userId): self
     {
-        $this->user = $user;
+        $this->userId = $userId;
 
         return $this;
     }
 
-    public function getClient(): ?Client
+
+    public function getAddressId(): ?ClientAddress
     {
-        return $this->client;
+        return $this->addressId;
     }
 
-    public function setClient(?Client $client): self
+    public function setAddressId($addressId): self
     {
-        $this->client = $client;
-
-        return $this;
-    }
-
-    public function getAddress(): ?ClientAddress
-    {
-        return $this->address;
-    }
-
-    public function setAddress(?ClientAddress $address): self
-    {
-        $this->address = $address;
+        $this->addressId = $addressId;
 
         return $this;
     }
@@ -119,9 +107,5 @@ class Reservation
         $this->endDate = $endDate;
 
         return $this;
-    }
-
-    public function setUserId ($userId) {
-
     }
 }
