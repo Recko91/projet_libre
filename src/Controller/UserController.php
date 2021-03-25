@@ -60,7 +60,6 @@ class UserController extends AbstractController
             ])
             ->add('startDate', DateTimeType::Class, [
                 'attr' => [
-                    'Type' => 'datetime-local',
                     'placeholder' => 'À partir de',
                     'class' => 'form-control'
                 ]
