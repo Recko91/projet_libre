@@ -129,10 +129,87 @@ class ClientController extends AbstractController
     }
 
     /**
-     * @Route("/client/adresse/modifier", name="mod_address")
+     * @Route("/client/adresse/modifier/{id}", name="mod_address")
      */
-    public function modAddress()
+    public function modAddress(Request $request, int $id)
     {
-        return $this->render('client/address/modAddress.html.twig');
+        $entityManager = $this->getDoctrine()->getManager();
+
+        $address = $entityManager->getRepository(ClientAddress::class)->find($id);
+        $form = $this->createFormBuilder($address)
+
+                ->add('streetName', TextType::class, [
+                    'attr' => [
+                        'placeholder' => "Adresse",
+                        'class' => 'form-control'
+                    ]
+                ])
+                ->add('postalCode', TextType::class, [
+                    'attr' => [
+                        'placeholder' => "Code Postal",
+                        'class' => 'form-control'
+                    ]
+                ])
+                ->add('city', TextType::class, [
+                    'attr' => [
+                        'placeholder' => "Ville",
+                        'class' => 'form-control'
+                    ]
+                ])
+                ->add('country', TextType::class, [
+                    'attr' => [
+                        'placeholder' => "Pays",
+                        'class' => 'form-control'
+
+                    ]
+                ])
+                ->add('capacity', TextType::class, [
+                    'attr' => [
+                        'placeholder' => "Capacité",
+                        'class' => 'form-control'
+
+                    ]
+                ])
+                ->add('price', TextType::class, [
+                    'attr' => [
+                        'placeholder' => "Prix",
+                        'class' => 'form-control'
+
+                    ]
+                ])
+                ->add('isOpen')
+                ->add('save', SubmitType::class, [
+                    'label' => 'Modifier',
+                    'attr' => [
+                        'class' => "btn btn-primary"
+                    ]
+                ])
+                ->getForm();
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid())
+        {
+            $entityManager->flush();
+            return $this->redirectToRoute('client_address');
+        }
+
+        return $this->render('client/address/modAddress.html.twig', [
+            'formAddress' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/client/adresse/supprimer/{id}", name="suppr_address")
+     */
+    public function deleteAddress(int $id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $address = $entityManager->getRepository(ClientAddress::class)->find($id);
+
+        $entityManager->remove($address);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('client_address');
     }
 }

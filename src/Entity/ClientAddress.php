@@ -65,12 +65,12 @@ class ClientAddress
     private $isOpen;
 
     /**
-     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="addressId", orphanRemoval=true)
+     * 
      */
     private $reservations;
 
     /**
-     * @ORM\OneToMany(targetEntity=Comment::class, mappedBy="addressId", orphanRemoval=true)
+     *
      */
     private $comments;
 
