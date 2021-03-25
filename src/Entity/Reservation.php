@@ -61,7 +61,7 @@ class Reservation
     }
 
 
-    public function getAddressId(): ?ClientAddress
+    public function getAddressId(): ?int
     {
         return $this->addressId;
     }

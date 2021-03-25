@@ -40,7 +40,11 @@ class UserController extends AbstractController
      */
     public function booked()
     {
-        return $this->render('user/booked.html.twig');
+        $userId = $this->security->getUser()->getId();
+        $reservations = $this->getDoctrine()->getRepository(Reservation::class)->findByUserId($userId);
+        dump($reservations);
+        return $this->render('user/booked.html.twig', [
+            "reservations" => $reservations]);
     }
 
     /**

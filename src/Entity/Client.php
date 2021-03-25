@@ -52,12 +52,12 @@ class Client implements UserInterface
     private $phoneNumber;
 
     /**
-     * @ORM\OneToMany(targetEntity=Reservation::class, mappedBy="clientId", orphanRemoval=true)
+     * 
      */
     private $reservations;
 
     /**
-     * @ORM\OneToMany(targetEntity=ClientAddress::class, mappedBy="clientId", orphanRemoval=true)
+     * 
      */
     private $clientAddresses;
 
