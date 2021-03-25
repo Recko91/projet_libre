@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Comment;
 
 class UserController extends AbstractController
 {
@@ -90,7 +91,11 @@ class UserController extends AbstractController
 
                 return $this->redirectToRoute('booked');
             }
+            $repo = $this->getDoctrine()->getRepository(Comment::class);
+             $lists = $repo->findAll();
+
             return $this->render('user/reservation.html.twig', [
+                'lists'=>$lists,
                 'formReservation' =>$form->createView()
             ]);
     }
