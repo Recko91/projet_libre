@@ -64,7 +64,7 @@
 		{% for list in lists %}
                 <div class="row">
                     {# <div class="Nom">Nom : {{ list.nom }}</div> #}
-                    <div class="Date">Date : {{ list.created_at|date("d/m/Y") }}</div>
+                    <div class="Date">Date : {{ list.createdAt|date("d/m/Y") }}</div>
                     <div class="Commentaire">commentaire : {{ list.content }} €</div>
                 </div>
             {% endfor %}
