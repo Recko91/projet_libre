@@ -4,6 +4,7 @@ namespace App\Controller;
 
 
 use App\Entity\ClientAddress;
+use App\Form\RegistrationClientType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Request;
@@ -12,6 +13,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class ClientController extends AbstractController
 {
@@ -27,11 +29,27 @@ class ClientController extends AbstractController
     }
 
     /**
-     * @Route("/client/parametres", name="client_parameters")
+     * @Route("/client/parameters", name="client_parameters")
      */
-    public function parameters()
+    public function parameters(Request $request, UserPasswordEncoderInterface $encoder)
     {
-        return $this->render('client/parameters.html.twig');
+        
+        $client = $this->getUser();
+        $form = $this->createForm(RegistrationClientType::class, $client);
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $encodePassword = $encoder->encodePassword($client, $client->getPassword());
+            $client->setPassword($encodePassword);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($client);
+            $em->flush();
+
+            return $this->redirectToRoute('client_address');
+        }
+        return $this->render('client/parameters.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 
     /**

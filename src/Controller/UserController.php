@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\Reservation;
+use App\Form\RegistrationType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class UserController extends AbstractController
 {
@@ -31,11 +33,26 @@ class UserController extends AbstractController
     /**
      * @Route("/parametres", name="user_parameters")
      */
-    public function parameters()
+    public function parameters(Request $request, UserPasswordEncoderInterface $encoder)
     {
-        return $this->render('user/parameters.html.twig');
-    }
+        
+        $user = $this->getUser();
+        $form = $this->createForm(RegistrationType::class, $user);
+        $form->handleRequest($request);
 
+        if($form->isSubmitted() && $form->isValid()){
+            $encodePassword = $encoder->encodePassword($user, $user->getPassword());
+            $user->setPassword($encodePassword);
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
+
+            return $this->redirectToRoute('app_index');
+        }
+        return $this->render('user/parameters.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
     /**
      * @Route("/mes-reservations", name="booked")
      */

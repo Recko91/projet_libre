@@ -1,47 +1,53 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-<div class="col-sm-12">
 
-  <h1 class="text-center text-white font my-4">Paramètres utilisateur</h1>
+<div class="wrapper register-color" style="height:100%;">
+  <h1 class="text-center font">Paramètres utilisateur</h1>
 
-    <form action="{{ path('user_parameters') }}" method="post">
-      <div class="form-group">
-        <label>Prénom</label>
-        <input type="text" name="firstname" placeholder="Votre Prénom" class="form-control">
-      </div>
 
-      <div class="form-group">
-        <label>Nom</label>
-        <input type="text" name="lastname" placeholder="Votre Nom" class="form-control">
-      </div>
 
-      <div class="form-group">
-        <label>Adresse Email</label>
-        <input type="text" name="_username" placeholder="Email..." class="form-control">
-      </div>
+        {{ form_start(form) }}
+        <div class="p-2">
+          
+          
+          <div class="form-group">
+            <div class="col-sm-12">
+              {{ form_row(form.email, { 'label': 'ADRESSE EMAIL', 'attr': {
+                        'placeholder': 'Entrer votre adresse email...',
+                        'class': 'form-control'
+                      }}) }}
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="col-sm-12">
+              {{ form_row(form.password, { 'label': 'MOT DE PASSE', 'attr': {
+                      'placeholder': 'Entrer votre mot de passe...',
+                      'class': 'form-control'
+                    }}) }}
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <div class="col-sm-12">
+                  {{ form_row(form.password_validation, { 'label': 'MOT DE PASSE', 'attr': {
+                      'placeholder': 'Confirmer votre mot de passe...',
+                      'class': 'form-control'
+                    }}) }}
+            </div>
+          </div>
+          
 
-      <div class="form-group">
-        <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-          Modifier le Mot de Passe
-        </button>
-      </div>
-      <div class="collapse" id="collapseExample">
-          <input type="password" name="_password" placeholder="Mot de Passe..." class="form-control" ><br>
-      </div>
+          <div class="col-sm-12">
+              <button class="btn btn-primary btn-block btn-custom">Modifier</button>
+          </div>    
 
-      <div class="form-group">
-        <label>Alias</label>
-        <input type="text" name="alias" placeholder="Votre Alias..." class="form-control">
-      </div>
+        </div>
 
-      <div class="form-group">
-        <label>Numéro de Téléphone</label>
-        <input type="text" name="phone_number" placeholder="Votre Numéro de Téléphone..." class="form-control">
-      </div>
-      
-        <button type="submit" class="btn btn-primary btn-block">Valider</button>
-    </form>
+        {{ form_end(form) }}
 
-  </div>
+
+		</div>
+
 {% endblock %}
