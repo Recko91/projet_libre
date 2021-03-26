@@ -108,8 +108,7 @@ input.form-control:focus{
 
     /* map */
 #mapid{
-    width: 100%;
-    height: 500px;
+    height: 1000px; 
     z-index:2
 }
 #white{

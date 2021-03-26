@@ -32,9 +32,7 @@
 			
 		{% endblock %}
 		<style>
-			#mapid { 
-				height: 1000px; 
-			}
+
 		</style>
 
 
@@ -86,16 +84,17 @@
 				<!-- Leaflet JS -->
 				<script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
 				integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-				crossorigin=""></script>
+				crossorigin="">
+				
+</script>
 
 				<!-- Geocoder-->
 				<script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
 				<script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
-
 			{% endblock %}
 
 			<script>
-				
+				map.locate({setView: true, maxZoom: 16});
 			</script>
 		</body>
 
