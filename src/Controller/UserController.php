@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Comment;
 use App\Entity\Reservation;
+use App\Entity\ClientAddress;
 use App\Form\RegistrationType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Security;
@@ -131,5 +132,17 @@ class UserController extends AbstractController
                 'comments'=>$comments,
                 'formReservation' =>$form->createView()
             ]);
+    }
+
+    /**
+     * @Route("/toutes-les-adresses", name="every_addresses")
+     */
+    public function allAddress()
+    {
+        $addresses = $this->getDoctrine()->getRepository(ClientAddress::class)->findAll();
+        dump($addresses);
+
+        return $this->render('user/all_addresses.html.twig', [
+            "addresses" => $addresses]);
     }
 }

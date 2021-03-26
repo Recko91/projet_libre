@@ -1,0 +1,46 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+<div class="col-sm-12">
+
+  <h1 class="text-center text-white font my-4">Toutes les adresses</h1>
+
+  {% for address in addresses %}
+
+
+
+  <div class="col-lg-12 d-flex flex-column">
+
+      <div class="card bg-light mb-3" style="max-width: 100%;">
+      <div class="card-header"># {{ address.id }}</div>
+      <div class="card-body">
+          <h5 class="card-title">{{ address.streetName }} <br>
+              {{ address.postalCode }} {{ address.city }}, {{ address.country }}</h5>
+              Prix : {{ address.price }} € <br>
+              Disponibilité : {{ address.availability }} / {{ address.capacity }} </p>
+      </div>
+      <div class="card-footer">
+              <a href="{{ path('reservation', {'id': address.id}) }}"><button class="btn btn-primary">Réserver</button></a></div>
+      </div>
+
+  </div>
+
+{% endfor %}
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <script> 
+
+      function on() { 
+        document.getElementById("overlay").style.display = "block"; 
+      } 
+
+      function off() { 
+        document.getElementById("overlay").style.display = "none"; 
+      } 
+
+    </script> 
+
+{% endblock %}
