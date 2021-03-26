@@ -28,7 +28,7 @@ class Reservation
      */
     private $addressId;
 
-    /**
+     /**
      * @ORM\Column(type="integer")
      */
     private $vehicleQuantity;

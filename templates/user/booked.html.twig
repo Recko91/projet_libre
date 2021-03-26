@@ -12,13 +12,13 @@
     <div class="card bg-light mb-3" style="max-width: 100%;">
     <div class="card-header"># {{ reservation.addressId }}</div>
     <div class="card-body">
-        <h5 class="card-title">Adresse <br>
-            postalCode city, country</h5>
-            Votre Prix :  € <br>
-            À partir de {{ reservation.startDate|date('d-m-Y') }} Jusqu'au {{ reservation.endDate|date('d-m-Y') }} </p>
+
+            <p>Pour un nombre de vehicule de {{ reservation.vehicleQuantity }}</p>
+
+            <p>À partir de {{ reservation.startDate|date('d-m-Y') }} Jusqu'au {{ reservation.endDate|date('d-m-Y') }} </p>
     </div>
-{#     <div class="card-footer"><a href="{{ path('mod_address', {'id': address.id}) }}"><button class="btn btn-warning mr-2">Modifier</button></a>
-            <a href="{{ path('suppr_address', {'id': address.id}) }}"><button class="btn btn-danger">Supprimer</button></a></div> #}
+    <div class="card-footer">
+      <a href="{{ path('suppr_booked', {'id': reservation.id}) }}"><button class="btn btn-danger">Annuler</button></a></div>
     </div>
 
 </div>

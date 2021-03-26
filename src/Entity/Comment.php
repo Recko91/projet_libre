@@ -24,10 +24,9 @@ class Comment
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=ClientAddress::class, inversedBy="comments")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="integer")
      */
-    private $address;
+    private $addressId;
 
     /**
      * @ORM\Column(type="text")
@@ -66,14 +65,14 @@ class Comment
         return $this;
     }
 
-    public function getAddress(): ?ClientAddress
+    public function getAddressId(): ?ClientAddress
     {
-        return $this->address;
+        return $this->addressId;
     }
 
-    public function setAddress(?ClientAddress $address): self
+    public function setAddressId($addressId): self
     {
-        $this->address = $address;
+        $this->addressId = $addressId;
 
         return $this;
     }

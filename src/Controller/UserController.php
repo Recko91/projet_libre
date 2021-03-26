@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Comment;
 use App\Entity\Reservation;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Security\Core\Security;
@@ -14,7 +15,6 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Entity\Comment;
 
 class UserController extends AbstractController
 {
@@ -46,6 +46,20 @@ class UserController extends AbstractController
         dump($reservations);
         return $this->render('user/booked.html.twig', [
             "reservations" => $reservations]);
+    }
+
+    /**
+     * @Route("/mes-reservations/supprimer/{id}", name="suppr_booked")
+     */
+    public function deleteBooked(int $id)
+    {
+        $entityManager = $this->getDoctrine()->getManager();
+        $reservation = $entityManager->getRepository(Reservation::class)->find($id);
+
+        $entityManager->remove($reservation);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('booked');
     }
 
     /**
@@ -95,11 +109,9 @@ class UserController extends AbstractController
 
                 return $this->redirectToRoute('booked');
             }
-            $repo = $this->getDoctrine()->getRepository(Comment::class);
-             $lists = $repo->findAll();
-
+            $comments = $this->getDoctrine()->getRepository(Comment::class)->findByAddressId($id);
             return $this->render('user/reservation.html.twig', [
-                'lists'=>$lists,
+                'comments'=>$comments,
                 'formReservation' =>$form->createView()
             ]);
     }

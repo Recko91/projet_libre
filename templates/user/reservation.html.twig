@@ -6,7 +6,7 @@
   <h1 class="text-center text-white font my-4">Faire une reservation</h1>
 
 
-{{ form_start(formReservation )}}
+  {{ form_start(formReservation )}}
 
 	<div class="form-group">
 		<label>Pour combien de véhicule ?</label>
@@ -28,7 +28,7 @@
 	</div>
 	
 
-{{ form_end(formReservation) }}
+  {{ form_end(formReservation) }}
 {#     <form method="post" action="{{ path('reservation', {'id': 1}) }}">
 
       <div class="form-group">
@@ -52,30 +52,28 @@
 
     <!-- Commentaires-->
 
-    <button class="btn btn-warning m-3" onclick="on()">Voir les commentaires</button>
-
+  <button class="btn btn-warning m-3" onclick="on()">Voir les commentaires</button>
+</div>
    <div id="overlay">
     <button class="btn btn-secondary m-3" onclick="off()">Revenir à la réservation</button>
     <h2 class="text-center text-white">Commentaires</h2>
 
 
     <div class="container">
-    			
-		{% for list in lists %}
-                <div class="row">
-                    {# <div class="Nom">Nom : {{ list.nom }}</div> #}
-                    <div class="Date">Date : {{ list.createdAt|date("d/m/Y") }}</div>
-                    <div class="Commentaire">commentaire : {{ list.content }} €</div>
-                </div>
-            {% endfor %}
-		
-    </div> <!-- /container -->
+    
+      {% for comment in comments %}
 
+        <div class="col-lg-12 d-flex flex-column">
 
+        <div class="card bg-light mb-3" style="max-width: 100%;">
+          <div class="card-header"><strong>{{ comment.user.email }}</strong><div class="Date">le {{ comment.createdAt|date("d/m/Y") }}</div></div>
+          <div class="card-body">
+            <p>{{ comment.content }}</p>
+          </div>
+        </div>
 
-   </div>  
-
-</div>
+      {% endfor %}
+    </div>
 {% endblock %}
 
 {% block javascripts %}
