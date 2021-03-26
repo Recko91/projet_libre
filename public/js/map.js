@@ -21,17 +21,28 @@ window.onload = function(){
         popupAnchor: [0, -40]
     })
 
+    var circle = L.circle([51.508, -0.11], {
+        color: 'red',
+        fillColor: '#f03',
+        fillOpacity: 0.5,
+        radius: 500
+    }).addTo(mymap);
+    
     // for(location in locations){
     // var marker = L.marker([locations[location].lat, locations[location].lon])
     // .addTo(myapp);
     // }
+
+    var geo = mymap.locate({setView: true, maxZoom: 16});
+
+
 
     // création marqueur + popup
     var marker = L.marker([48.852969, 2.349903],
     {icon: icone})
     .addTo(mymap);
     marker.bindPopup(
-        "<p>Adresse Paris<br>Note : 4/5</p><a class='btn text-white btn-primary' href='https://127.0.0.1:8000/reservation/1'>Réservation</a>")
+        "<p>Adresse Paris<br>Note : 4/5</p><a class='btn text-white btn-primary' href='https://127.0.0.1:8000/reservation/17'>Réservation</a>")
         .openPopup();
 
 
@@ -48,6 +59,8 @@ window.onload = function(){
              profile: 'bike'
         })
     }).addTo(mymap)
+
+
 
 
 }
